@@ -1,0 +1,476 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SQLAlchemy简明教程 - SQLAlchem自助手册</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="../favicon.svg">
+                        <link rel="shortcut icon" href="../favicon.png">
+                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+                <link rel="stylesheet" href="../css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="../fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 指南</a></li><li class="chapter-item expanded "><a href="../my_tutorial/index.html"><strong aria-hidden="true">2.</strong> 收集的教程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../my_tutorial/tutorial01.html" class="active"><strong aria-hidden="true">2.1.</strong> SQLAlchemy简明教程</a></li></ol></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">SQLAlchem自助手册</h1>
+
+                    <div class="right-buttons">
+                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="sqlalchemy简明教程"><a class="header" href="#sqlalchemy简明教程">SQLAlchemy简明教程</a></h1>
+<ul>
+<li><a href="#sqlalchemy%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B">SQLAlchemy简明教程</a>
+<ul>
+<li><a href="#%E8%A1%A8%E7%9A%84%E8%AE%BE%E8%AE%A1">表的设计</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C">常见操作</a>
+<ul>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C">常见查询操作</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C">常见删除操作</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C">常见更新操作</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C">常见插入操作</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E8%BF%9E%E8%A1%A8%E6%9F%A5%E8%AF%A2">常见连表查询</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93migration">数据库migration</a></li>
+</ul>
+</li>
+</ul>
+<p>原文可见: <a href="https://jiajunhuang.com/articles/2019_10_30-sqlalchemy.md.html">https://jiajunhuang.com/articles/2019_10_30-sqlalchemy.md.html</a></p>
+<p>SQLAlchemy是Python中常用的一个ORM，SQLAlchemy分成三部分：</p>
+<ul>
+<li>ORM，就是我们用类来表示数据库schema的那部分</li>
+<li>SQLAlchemy Core，就是一些基础的操作，例如 <strong>update</strong> , <strong>insert</strong> 等等，也可以直接使用这部分来进行操作，但是它们写起来没有ORM那么自然</li>
+<li>DBAPI，这部分就是数据库驱动</li>
+</ul>
+<p>它们的关系如下(图片来自官网)：</p>
+<p><img src="../images/sqla_arch.png" alt="sqla arch" /></p>
+<p>先来看看一个简单的例子：</p>
+<pre><code class="language-python">import contextlib
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import (
+    create_engine,
+    Column,
+    Integer,
+    DateTime,
+    String,
+)
+from config import config  # config模块里有自己写的配置，我们可以换成别的，注意下面用到config的地方也要一起换
+
+engine = create_engine(
+    config.SQLALCHEMY_DATABASE_URI,  # SQLAlchemy 数据库连接串，格式见下面
+    echo=bool(config.SQLALCHEMY_ECHO),  # 是不是要把所执行的SQL打印出来，一般用于调试
+    pool_size=int(config.SQLALCHEMY_POOL_SIZE),  # 连接池大小
+    max_overflow=int(config.SQLALCHEMY_POOL_MAX_SIZE),  # 连接池最大的大小
+    pool_recycle=int(config.SQLALCHEMY_POOL_RECYCLE),  # 多久时间主动回收连接，见下注释
+)
+Session = sessionmaker(bind=engine)
+Base = declarative_base(engine)
+
+
+class BaseMixin:
+    &quot;&quot;&quot;model的基类,所有model都必须继承&quot;&quot;&quot;
+    id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
+    updated_at = Column(DateTime, nullable=False, default=datetime.datetime.now, onupdate=datetime.datetime.now, index=True)
+    deleted_at = Column(DateTime)  # 可以为空, 如果非空, 则为软删
+
+
+@contextlib.contextmanager
+def get_session():
+    s = Session()
+    try:
+        yield s
+        s.commit()
+    except Exception as e:
+        s.rollback()
+        raise e
+    finally:
+        s.close()
+
+
+class User(Base, BaseMixin):
+    __tablename__ = &quot;user&quot;
+
+    Name = Column(String(36), nullable=False)
+    Phone = Column(String(36), nullable=False, unique=True)
+</code></pre>
+<p>注意上面的几点：</p>
+<ul>
+<li>
+<p><strong>pool_recycle</strong>: 设置主动回收连接的时长，如果不设置，那么可能会遇到数据库主动断开连接的问题，例如<code>MySQL</code>通常会为连接设置最大生命周期为八小时，如果没有通信，那么就会断开连接。因此不设置此选项可能就会遇到 <code>MySQL has gone away</code> 的报错。</p>
+</li>
+<li>
+<p><strong>engine</strong>: <code>engine</code> 是 <code>SQLAlchemy</code> 中位于数据库驱动之上的一个抽象概念，它适配了各种数据库驱动，提供了连接池等功能。其用法就是 如上面例子中，<code>engine = create_engine(&lt;数据库连接串&gt;)</code>，数据库连接串的格式是 <code>dialect+driver://username:password@host:port/database?参数</code> 这样的，<strong>dialect</strong> 可以是 <code>mysql</code>, <code>postgresql</code>, <code>oracle</code>, <code>mssql</code>, <code>sqlite</code>，后面的 <strong>driver</strong> 是驱动，比如<code>MySQL</code>的驱动<code>pymysql</code>， 如果不填写，就使用默认驱动。再往后就是<code>用户名</code>、<code>密码</code>、<code>地址</code>、<code>端口</code>、<code>数据库</code>、<code>连接参数</code>了，来看几个例子：</p>
+<ul>
+<li><strong>MySQL</strong>: <code>engine = create_engine('mysql+pymysql://scott:tiger@localhost/foo?charset=utf8mb4')</code></li>
+<li><strong>PostgreSQL</strong>: <code>engine = create_engine('postgresql+psycopg2://scott:tiger@localhost/mydatabase')</code></li>
+<li><strong>Oracle</strong>: <code>engine = create_engine('oracle+cx_oracle://scott:tiger@tnsname')</code></li>
+<li><strong>MS SQL</strong>: <code>engine = create_engine('mssql+pymssql://scott:tiger@hostname:port/dbname')</code></li>
+<li><strong>SQLite</strong>: <code>engine = create_engine('sqlite:////absolute/path/to/foo.db')</code></li>
+<li>详见：<a href="https://docs.sqlalchemy.org/en/13/core/engines.html">https://docs.sqlalchemy.org/en/13/core/engines.html</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Session</strong>: <code>Session</code>的意思就是会话，也就是说，是一个逻辑组织的概念，因此，这需要靠你的业务逻辑来划分哪些操作使用同一个<code>Session</code>， 哪些操作又划分为不同的业务操作，详见 <a href="https://docs.sqlalchemy.org/en/13/orm/session_basics.html#session-faq-whentocreate">这里</a>。 举个简单的例子，以web应用为例，一个请求里共用一个<code>Session</code>就是一个好的例子，一个异步任务执行过程中使用一个<code>Session</code>也是一个例子。 但是注意，不能直接使用<code>Session</code>，而是使用<strong>Session的实例</strong>，借助上面的代码，我们可以直接这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    print(s.query(User).first())
+</code></pre>
+</li>
+<li>
+<p><strong>Base</strong>: <code>Base</code>是<code>ORM</code>中的一个<strong>基类</strong>，通过集成<code>Base</code>，我们才能方便的使用一些基本的查询，例如 <code>s.query(User).filter_by(User.name=&quot;nick&quot;).first()</code>。</p>
+</li>
+<li>
+<p><strong>BaseMixin</strong>: <code>BaseMixin</code>是定义的一些通用的表结构，通过<code>Mixin</code>的方式集成到类里，比如上面的定义，我们常见的表结构里，都会有 <strong>ID</strong>、<strong>创建时间</strong>、<strong>更新时间</strong>，<strong>软删除标志</strong> 等等，我们把它作为一个独立的类，这样通过继承即可获得相关表属性，省得重复写多次。</p>
+</li>
+</ul>
+<h2 id="表的设计"><a class="header" href="#表的设计">表的设计</a></h2>
+<p>表的设计通常就如 <code>User</code> 表一样：</p>
+<pre><code class="language-python">class User(Base, BaseMixin):
+    __tablename__ = &quot;user&quot;
+
+    Name = Column(String(36), nullable=False)
+    Phone = Column(String(36), nullable=False, unique=True)
+</code></pre>
+<p>首先使用 <strong>__tablename__</strong> 自定义表名，接着写各个表中的属性，也就是对应在数据库表中的列(<code>column</code>)，常见的类型有：</p>
+<pre><code class="language-python">&gt;$ egrep '^class ' ~/.pyenv/versions/3.6.0/lib/python3.6/site-packages/sqlalchemy/sql/sqltypes.py
+class _LookupExpressionAdapter(object):
+class Concatenable(object):
+class Indexable(object):
+class String(Concatenable, TypeEngine):
+class Text(String):
+class Unicode(String):
+class UnicodeText(Text):
+class Integer(_LookupExpressionAdapter, TypeEngine):
+class SmallInteger(Integer):
+class BigInteger(Integer):
+class Numeric(_LookupExpressionAdapter, TypeEngine):
+class Float(Numeric):
+class DateTime(_LookupExpressionAdapter, TypeEngine):
+class Date(_LookupExpressionAdapter, TypeEngine):
+class Time(_LookupExpressionAdapter, TypeEngine):
+class _Binary(TypeEngine):
+class LargeBinary(_Binary):
+class Binary(LargeBinary):
+class SchemaType(SchemaEventTarget):
+class Enum(Emulated, String, SchemaType):
+class PickleType(TypeDecorator):
+class Boolean(Emulated, TypeEngine, SchemaType):
+class _AbstractInterval(_LookupExpressionAdapter, TypeEngine):
+class Interval(Emulated, _AbstractInterval, TypeDecorator):
+class JSON(Indexable, TypeEngine):
+class ARRAY(SchemaEventTarget, Indexable, Concatenable, TypeEngine):
+class REAL(Float):
+class FLOAT(Float):
+class NUMERIC(Numeric):
+class DECIMAL(Numeric):
+class INTEGER(Integer):
+class SMALLINT(SmallInteger):
+class BIGINT(BigInteger):
+class TIMESTAMP(DateTime):
+class DATETIME(DateTime):
+class DATE(Date):
+class TIME(Time):
+class TEXT(Text):
+class CLOB(Text):
+class VARCHAR(String):
+class NVARCHAR(Unicode):
+class CHAR(String):
+class NCHAR(Unicode):
+class BLOB(LargeBinary):
+class BINARY(_Binary):
+class VARBINARY(_Binary):
+class BOOLEAN(Boolean):
+class NullType(TypeEngine):
+class MatchType(Boolean):
+</code></pre>
+<h2 id="常见操作"><a class="header" href="#常见操作">常见操作</a></h2>
+<p>我们来看看使用SQLAlchemy完成常见的操作，例如增删查改：</p>
+<h3 id="常见查询操作"><a class="header" href="#常见查询操作">常见查询操作</a></h3>
+<ul>
+<li>
+<p><code>SELECT * FROM user</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    print(s.query(User).all())
+</code></pre>
+</li>
+<li>
+<p><code>SELECT * FROM user WHERE name='nick'</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    print(s.query(User).filter_by(User.name='nick').all())
+    print(s.query(User).filter(User.name == 'nick').all())  # 这样写是等同效果的
+</code></pre>
+</li>
+<li>
+<p><code>SELECT * FROM user WHERE name='nick' LIMIT 1</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    print(s.query(User).filter_by(User.name='nick').first())
+</code></pre>
+<p>如果需要加判定，例如确保只有一条数据，那就把 <code>first()</code> 替换为 <code>one()</code>，如果确保一行或者没有，那就写 <code>one_or_none()</code>。</p>
+</li>
+<li>
+<p><code>SELECT * FROM user ORDER BY id DESC LIMIT 1</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    print(s.query(User).order_by(User.id.desc()).first())
+</code></pre>
+</li>
+<li>
+<p><code>SELECT * FROM user ORDER BY id DESC LIMIT 1 OFFSET 20</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    print(s.query(User).order_by(User.id.desc()).offset(20).first())
+</code></pre>
+</li>
+</ul>
+<h3 id="常见删除操作"><a class="header" href="#常见删除操作">常见删除操作</a></h3>
+<ul>
+<li>
+<p><code>DELETE FROM user</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    s.query(User).delete()
+</code></pre>
+</li>
+<li>
+<p><code>DELETE FROM user WHERE name='nick'</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    s.query(User).filter_by(User.name='nick').delete()
+</code></pre>
+</li>
+<li>
+<p><code>DELETE FROM user WHERE name='nick' LIMIT 1</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    s.query(User).filter_by(User.name='nick').limit(1).delete()
+</code></pre>
+</li>
+</ul>
+<h3 id="常见更新操作"><a class="header" href="#常见更新操作">常见更新操作</a></h3>
+<ul>
+<li>
+<p><code>UPDATE user SET name='nick'</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    s.query(User).update({'name': 'nick'})
+</code></pre>
+</li>
+<li>
+<p><code>UPDATE user SET name='nick' WHERE id=1</code> 应该这样写：</p>
+<pre><code class="language-python">with get_session() as s:
+    s.query(User).filter_by(User.id=1).update({'name': 'nick'})
+</code></pre>
+<p>也可以通过更改实例的属性，然后提交：</p>
+<pre><code class="language-python">with get_session() as s:
+    user = s.query(User).filter_by(User.id=1).one()
+    user.name = 'nick'
+    s.commit()
+</code></pre>
+</li>
+</ul>
+<h3 id="常见插入操作"><a class="header" href="#常见插入操作">常见插入操作</a></h3>
+<p>这个就简单了，实例化对象，然后 <code>session.add</code>，最后提交：</p>
+<pre><code class="language-python">with get_session() as s:
+    user = User()
+    s.add(user)
+    s.commit()
+</code></pre>
+<h3 id="常见连表查询"><a class="header" href="#常见连表查询">常见连表查询</a></h3>
+<p><code>SQLAlchemy</code> 中可以直接使用 <strong>join语句</strong> ：</p>
+<pre><code class="language-python">with get_session() as s:
+        s.query(Customer).join(Invoice).filter(Invoice.amount == 8500)
+</code></pre>
+<p>可以是这么几种写法：</p>
+<pre><code class="language-python">query.join(Address, User.id==Address.user_id)    # explicit condition
+query.join(User.addresses)                       # specify relationship from left to right
+query.join(Address, User.addresses)              # same, with explicit target
+query.join('addresses')                          # same, using a string
+</code></pre>
+<h2 id="数据库migration"><a class="header" href="#数据库migration">数据库migration</a></h2>
+<p>我们使用alembic来做数据库migration，首先安装：</p>
+<pre><code class="language-bash">&gt;$ pip install alembic
+&gt;$ alembic init alembic  # 此处 alembic init 后接的是保存migration的文件夹名称
+</code></pre>
+<p>然后我们要修改 <code>alembic/env.py</code> (假设你设置的保存<code>migration</code>的文件夹名称就是 <code>alembic</code>)，将对应部分修改成如下：</p>
+<pre><code class="language-python">config.set_main_option(
+    'sqlalchemy.url', config.SQLALCHEMY_DATABASE_URI
+)
+target_metadata = Base.metadata  # 从任意一个我们的model可以拿到总的Base
+engine = target_metadata.bind
+</code></pre>
+<p>因为<code>SQLAlchemy</code>会把表的信息存储在 <strong>metadata</strong> 里，而我们都继承了 <strong>Base</strong> ，因此可以 通过 <code>Base.metadata</code> 来拿到所有表的信息，这样子 <strong>alembic</strong> 才能够拿到表的结构，然后和数据库进行对比，生成 <strong>migration</strong> 脚本：</p>
+<pre><code class="language-bash">&gt;$ alembic revision --autogenerate -m '本次migration的信息，相当于git提交时的评论'
+</code></pre>
+<p>这一篇中我们看了如何使用<code>SQLAlchemy</code>来进行常见的操作，我们首先从如何定义表开始，接着我们注意看了常见的SQL操作对应的 <code>SQLAlchemy</code>操作是怎样的，最后我们看了以下<code>alembic</code>应该怎么配置才能自动生成<code>migration</code>脚本。</p>
+<hr />
+<p>参考资料：</p>
+<ul>
+<li><strong><a href="https://docs.sqlalchemy.org/en/13/intro.html">官方文档</a></strong></li>
+</ul>
+<hr />
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="../my_tutorial/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="../my_tutorial/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>
